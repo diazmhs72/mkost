@@ -20,41 +20,40 @@
                                     class="text-lg font-normal text-gray-500">/bln</span></p>
                         </div>
 
-                        <!-- Detail Fasilitas -->
+                        <!-- Detail Fasilitas dari Database -->
                         <div class="space-y-3 text-gray-700">
                             <div class="flex justify-between">
                                 <span class="font-semibold">Tipe Kamar</span>
-                                <!-- Ganti dengan data dinamis jika ada, contoh: $kost->tipe_kamar -->
-                                <span>Single Bed</span>
+                                <span>{{ $kost->tipe_kamar ?? 'Data tidak tersedia' }}</span>
                             </div>
                             <hr>
                             <div class="flex justify-between">
                                 <span class="font-semibold">Kamar Mandi</span>
-                                <!-- Ganti dengan data dinamis jika ada, contoh: $kost->kamar_mandi -->
-                                <span>Dalam</span>
+                                <span>{{ $kost->kamar_mandi ?? 'Data tidak tersedia' }}</span>
                             </div>
                             <hr>
                             <div class="flex justify-between">
                                 <span class="font-semibold">Fasilitas</span>
-                                <!-- Ganti dengan data dinamis jika ada, contoh: $kost->fasilitas -->
-                                <span>Wi-Fi, Lemari, CCTV, Dapur</span>
+                                <span class="text-right">{{ $kost->fasilitas ?? 'Data tidak tersedia' }}</span>
                             </div>
                             <hr>
                             <div class="flex justify-between">
                                 <span class="font-semibold">Pemilik</span>
-                                <!-- Ganti dengan nama pemilik dinamis, contoh: $kost->pemilik->nama -->
-                                <span>Ibu Sari</span>
+                                {{-- Mengambil nama dari relasi user --}}
+                                <span>{{ $kost->user->name ?? 'Data tidak tersedia' }}</span>
                             </div>
                         </div>
 
-                        <!-- Status dan Kategori (Tags) -->
+                        <!-- Status dan Kategori (Tags) dari Database -->
                         <div class="flex items-center gap-3 mt-6">
-                            <!-- Ganti kondisi 'khusus_putra' dengan data Anda, contoh: $kost->kategori == 'Putra' -->
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Khusus
-                                Putra</span>
-                            <!-- Ganti kondisi 'tersedia' dengan data Anda, contoh: $kost->status == 'Tersedia' -->
-                            <span
-                                class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Tersedia</span>
+                            @if ($kost->gender)
+                                <span
+                                    class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">{{ ucfirst($kost->gender) }}</span>
+                            @endif
+                            @if ($kost->status)
+                                <span
+                                    class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">{{ ucfirst($kost->status) }}</span>
+                            @endif
                         </div>
 
                         <!-- Peta Lokasi -->
@@ -70,15 +69,6 @@
 
                     <!-- Tombol Aksi -->
                     <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                        <form action="{{ route('booking.store') }}" method="POST" class="w-full">
-                            @csrf
-                            <input type="hidden" name="kost_id" value="{{ $kost->id }}">
-                            <button type="submit"
-                                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-                                Booking Sekarang
-                            </button>
-                        </form>
-                        <!-- Ganti nomor telepon dengan data dinamis, contoh: $kost->pemilik->telepon -->
                         <a href="https://wa.me/6281234567890" target="_blank"
                             class="w-full text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg transition duration-300">
                             Hubungi Pemilik

@@ -119,13 +119,34 @@
                 <!-- Navigation -->
                 <nav class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="{{ route('home') }}"
-                            class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->is('/') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600' }}">Home</a>
-                        <a href="{{ route('index') }}"
-                            class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->is('index') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600' }}">Cari
-                            Kost</a>
-                        <a href="#" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Status
-                            Booking</a>
+
+                        {{-- Menu untuk Semua User yang Login --}}
+                        @auth
+                            <a href="{{ route('home') }}"
+                                class="{{ request()->routeIs('home') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600' }} px-3 py-2 text-sm font-medium">Home</a>
+                        @endauth
+
+                        {{-- Menu Khusus PENYEWA --}}
+                        @if (Auth::check() && Auth::user()->role == 'penyewa')
+                            <a href="{{ route('index') }}"
+                                class="{{ request()->routeIs('index') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600' }} px-3 py-2 text-sm font-medium">Cari
+                                Kost</a>
+                        @endif
+
+                        {{-- Menu Khusus PEMILIK --}}
+                        @if (Auth::check() && Auth::user()->role == 'pemilik')
+                            <a href="{{ route('pemilik.index') }}"
+                                class="{{ request()->routeIs('pemilik.index') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600' }} px-3 py-2 text-sm font-medium">Kost
+                                Saya</a>
+                            {{-- <a href="{{ route('pemilik.orderan') }}" class="{{ request()->routeIs('pemilik.orderan') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600' }} px-3 py-2 text-sm font-medium">Orderan Masuk</a> --}}
+                        @endif
+
+                        {{-- Menu Khusus ADMIN --}}
+                        @if (Auth::check() && Auth::user()->role == 'admin')
+                            <a href="{{ route('admin.users') }}"
+                                class="{{ request()->routeIs('admin.users') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-blue-600' }} px-3 py-2 text-sm font-medium">Kelola
+                                User</a>
+                        @endif
                     </div>
                 </nav>
 

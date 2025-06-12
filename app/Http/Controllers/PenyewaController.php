@@ -22,7 +22,7 @@ class PenyewaController extends Controller
 
     public function show($id)
     {
-        $kost = Kost::findOrFail($id);
+        $kost = Kost::with('user')->findOrFail($id);
         return view('penyewa.show', compact('kost'));
     }
 

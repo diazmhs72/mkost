@@ -29,8 +29,8 @@ class Kost extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function bookings()
+    public function user()
     {
-        return $this->hasMany(Booking::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
