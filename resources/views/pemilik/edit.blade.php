@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mx-auto p-4 md:p-8">
         <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
-            <h1 class="text-2xl font-bold text-gray-800 mb-6">Edit Data Kost</h1>
+            <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Edit Data Kost</h1>
 
             @if ($errors->any())
                 <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

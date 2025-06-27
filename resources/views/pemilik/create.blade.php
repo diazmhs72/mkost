@@ -2,8 +2,8 @@
 
 @section('content')
     <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-5xl">
-            <h1 class="text-4xl font-extrabold text-gray-800 text-center mb-10">Tambah Kost</h1>
+        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-3xl mx-auto">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Tambah Data Kost Baru</h1>
 
             <!-- Menampilkan Error Validasi -->
             @if ($errors->any())
@@ -24,13 +24,14 @@
                     <label for="nama" class="block text-sm font-medium text-gray-700">Nama Kost</label>
                     <input type="text" id="nama" name="nama" value="{{ old('nama') }}"
                         placeholder="Contoh: Kost Sigma"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         required>
                 </div>
+
                 <div>
                     <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi Singkat</label>
                     <textarea id="deskripsi" name="deskripsi" placeholder="Jelaskan tentang kost Anda" rows="4"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         required>{{ old('deskripsi') }}</textarea>
                 </div>
 
@@ -39,15 +40,14 @@
                         <label for="harga" class="block text-sm font-medium text-gray-700">Harga per Bulan</label>
                         <input type="number" id="harga" name="harga" value="{{ old('harga') }}"
                             placeholder="Contoh: 100000"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required>
                     </div>
                     <div>
-                        <label for="jumlah_kamar" class="block text-sm font-medium text-gray-700">Jumlah Kamar
-                            Tersedia</label>
+                        <label for="jumlah_kamar" class="block text-sm font-medium text-gray-700">Jumlah Kamar</label>
                         <input type="number" id="jumlah_kamar" name="jumlah_kamar" value="{{ old('jumlah_kamar') }}"
                             placeholder="Contoh: 10"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <label for="lokasi" class="block text-sm font-medium text-gray-700">Alamat / Lokasi</label>
                     <input type="text" id="lokasi" name="lokasi" value="{{ old('lokasi') }}"
                         placeholder="Masukkan alamat lengkap atau nama jalan"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         required>
                 </div>
 
@@ -66,13 +66,13 @@
                     <div>
                         <label for="tipe_kamar" class="block text-sm font-medium text-gray-700">Tipe Kamar</label>
                         <input type="text" id="tipe_kamar" name="tipe_kamar"
-                            value="{{ old('tipe_kamar', 'Single Bed') }}" placeholder="Contoh: Single Bed"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            value="{{ old('tipe_kamar', 'Single Bed') }}"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
                     <div>
                         <label for="kamar_mandi" class="block text-sm font-medium text-gray-700">Kamar Mandi</label>
                         <select id="kamar_mandi" name="kamar_mandi"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="Dalam" @selected(old('kamar_mandi') == 'Dalam')>Dalam</option>
                             <option value="Luar" @selected(old('kamar_mandi') == 'Luar')>Luar</option>
                         </select>
@@ -82,7 +82,7 @@
                 <div>
                     <label for="fasilitas" class="block text-sm font-medium text-gray-700">Fasilitas</label>
                     <textarea id="fasilitas" name="fasilitas" placeholder="Contoh: Wi-Fi, AC, Lemari, CCTV" rows="3"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">{{ old('fasilitas') }}</textarea>
+                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">{{ old('fasilitas') }}</textarea>
                     <p class="text-xs text-gray-500 mt-1">Pisahkan setiap fasilitas dengan koma.</p>
                 </div>
 
@@ -92,7 +92,7 @@
                     <div>
                         <label for="gender" class="block text-sm font-medium text-gray-700">Dikhususkan Untuk</label>
                         <select id="gender" name="gender"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required>
                             <option value="">Pilih Kategori</option>
                             <option value="pria" @selected(old('gender') == 'pria')>Pria</option>
@@ -103,7 +103,7 @@
                     <div>
                         <label for="status" class="block text-sm font-medium text-gray-700">Status Ketersediaan</label>
                         <select id="status" name="status"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required>
                             <option value="Tersedia" @selected(old('status') == 'Tersedia')>Tersedia</option>
                             <option value="Penuh" @selected(old('status') == 'Penuh')>Penuh</option>
@@ -126,5 +126,5 @@
                 </div>
             </form>
         </div>
-        </div>
-    @endsection
+    </main>
+@endsection

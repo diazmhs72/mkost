@@ -20,15 +20,25 @@ class PenyewaController extends Controller
         return view('home', compact('kosts'));
     }
 
+    public function status()
+    {
+        // Ambil booking milik user yang login, urutkan dari yang terbaru
+        $bookings = Booking::where('user_id', Auth::id())
+            ->with('kost') // Eager load relasi kost
+            ->latest()
+            ->get();
+
+        return view('penyewa.status', compact('bookings'));
+    }
+
     public function show($id)
     {
         $kost = Kost::with('user')->findOrFail($id);
-        return view('penyewa.show', compact('kost'));
-    }
+        // Cek apakah user sudah punya booking untuk kost ini
+        $hasBooking = Booking::where('user_id', Auth::id())
+            ->where('kost_id', $id)
+            ->exists();
 
-    public function status()
-    {
-        $bookings = Booking::with('kost')->where('user_id', Auth::id())->get();
-        return view('penyewa.status', compact('bookings'));
+        return view('penyewa.show', compact('kost', 'hasBooking'));
     }
 }

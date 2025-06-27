@@ -9,20 +9,34 @@ class Booking extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'kost_id',
         'user_id',
+        'kost_id',
         'status',
-        'bukti_pembayaran'
+        'tanggal_mulai',
+        'approved_at',
     ];
 
-    public function kost()
-    {
-        return $this->belongsTo(Kost::class);
-    }
-
-    public function penyewa()
+    /**
+     * Mendefinisikan relasi "belongsTo" ke model User.
+     * Ini akan menghubungkan setiap booking dengan penyewanya.
+     */
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Mendefinisikan relasi "belongsTo" ke model Kost.
+     * Ini akan menghubungkan setiap booking dengan kost yang dipesan.
+     */
+    public function kost()
+    {
+        return $this->belongsTo(Kost::class, 'kost_id');
     }
 }

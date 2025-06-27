@@ -21,10 +21,13 @@ class PemilikController extends Controller
 
     public function orderan()
     {
-        $bookings = Booking::with('kost', 'penyewa')
-            ->whereHas('kost', function ($q) {
-                $q->where('user_id', Auth::id());
-            })
+        // Ambil ID semua kost milik user yang login
+        $kostIds = Auth::user()->kosts->pluck('id');
+
+        // Ambil semua booking untuk kost-kost tersebut
+        $bookings = Booking::whereIn('kost_id', $kostIds)
+            ->with(['user', 'kost']) // Eager load relasi user dan kost
+            ->latest()
             ->get();
 
         return view('pemilik.orderan', compact('bookings'));
